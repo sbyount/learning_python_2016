@@ -1,0 +1,64 @@
+DEBUG:my_log:This message should go to the log file
+DEBUG:paramiko.transport:starting thread (client mode): 0x2835650L
+DEBUG:paramiko.transport:Local version/idstring: SSH-2.0-paramiko_2.0.2
+DEBUG:paramiko.transport:Remote version/idstring: SSH-2.0-Cisco-1.25
+INFO:paramiko.transport:Connected (version 2.0, client Cisco-1.25)
+DEBUG:paramiko.transport:kex algos:[u'diffie-hellman-group-exchange-sha1', u'diffie-hellman-group14-sha1', u'diffie-hellman-group1-sha1'] server key:[u'ssh-rsa'] client encrypt:[u'aes128-cbc', u'3des-cbc', u'aes192-cbc', u'aes256-cbc'] server encrypt:[u'aes128-cbc', u'3des-cbc', u'aes192-cbc', u'aes256-cbc'] client mac:[u'hmac-sha1', u'hmac-sha1-96', u'hmac-md5', u'hmac-md5-96'] server mac:[u'hmac-sha1', u'hmac-sha1-96', u'hmac-md5', u'hmac-md5-96'] client compress:[u'none'] server compress:[u'none'] client lang:[u''] server lang:[u''] kex follows?False
+DEBUG:paramiko.transport:Kex agreed: diffie-hellman-group1-sha1
+DEBUG:paramiko.transport:Cipher agreed: aes128-cbc
+DEBUG:paramiko.transport:MAC agreed: hmac-md5
+DEBUG:paramiko.transport:Compression agreed: none
+DEBUG:paramiko.transport:kex engine KexGroup1 specified hash_algo <built-in function openssl_sha1>
+DEBUG:paramiko.transport:Switch to new keys ...
+DEBUG:paramiko.transport:Adding ssh-rsa host key for 10.9.18.38: 87dd80250b83bc596053d5ac42f7994d
+DEBUG:paramiko.transport:userauth is OK
+INFO:paramiko.transport:Auth banner: 
+******************************WARNING************************************
+This system is for authorized users only. This, and any other sessions,
+can and will be monitored to determine whether or not it is being used by
+an authorized user.
+By logging into this system, you are consenting to such monitoring, and
+are advised that the system administrators retain the right to use any
+recorded session as evidence of criminal activity, if such activity is
+monitored.
+******************************WARNING************************************
+
+INFO:paramiko.transport:Authentication (password) successful!
+DEBUG:paramiko.transport:[chan 0] Max packet in: 32768 bytes
+DEBUG:paramiko.transport:[chan 0] Max packet out: 4096 bytes
+DEBUG:paramiko.transport:Secsh channel 0 opened.
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:paramiko.transport:EOF in transport thread
+DEBUG:my_log:This message should go to the log file
+DEBUG:paramiko.transport:starting thread (client mode): 0x2853650L
+DEBUG:paramiko.transport:Local version/idstring: SSH-2.0-paramiko_2.0.2
+DEBUG:paramiko.transport:Remote version/idstring: SSH-2.0-Cisco-1.25
+INFO:paramiko.transport:Connected (version 2.0, client Cisco-1.25)
+DEBUG:paramiko.transport:kex algos:[u'diffie-hellman-group-exchange-sha1', u'diffie-hellman-group14-sha1', u'diffie-hellman-group1-sha1'] server key:[u'ssh-rsa'] client encrypt:[u'aes128-cbc', u'3des-cbc', u'aes192-cbc', u'aes256-cbc'] server encrypt:[u'aes128-cbc', u'3des-cbc', u'aes192-cbc', u'aes256-cbc'] client mac:[u'hmac-sha1', u'hmac-sha1-96', u'hmac-md5', u'hmac-md5-96'] server mac:[u'hmac-sha1', u'hmac-sha1-96', u'hmac-md5', u'hmac-md5-96'] client compress:[u'none'] server compress:[u'none'] client lang:[u''] server lang:[u''] kex follows?False
+DEBUG:paramiko.transport:Kex agreed: diffie-hellman-group1-sha1
+DEBUG:paramiko.transport:Cipher agreed: aes128-cbc
+DEBUG:paramiko.transport:MAC agreed: hmac-md5
+DEBUG:paramiko.transport:Compression agreed: none
+DEBUG:paramiko.transport:kex engine KexGroup1 specified hash_algo <built-in function openssl_sha1>
+DEBUG:paramiko.transport:Switch to new keys ...
+DEBUG:paramiko.transport:Adding ssh-rsa host key for 10.9.18.38: 87dd80250b83bc596053d5ac42f7994d
+DEBUG:paramiko.transport:userauth is OK
+INFO:paramiko.transport:Auth banner: 
+******************************WARNING************************************
+This system is for authorized users only. This, and any other sessions,
+can and will be monitored to determine whether or not it is being used by
+an authorized user.
+By logging into this system, you are consenting to such monitoring, and
+are advised that the system administrators retain the right to use any
+recorded session as evidence of criminal activity, if such activity is
+monitored.
+******************************WARNING************************************
+
+INFO:paramiko.transport:Authentication (password) successful!
+DEBUG:paramiko.transport:[chan 0] Max packet in: 32768 bytes
+DEBUG:paramiko.transport:[chan 0] Max packet out: 4096 bytes
+DEBUG:paramiko.transport:Secsh channel 0 opened.
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:paramiko.transport:EOF in transport thread
