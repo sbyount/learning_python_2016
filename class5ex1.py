@@ -19,7 +19,7 @@ cdp_neighbors = (
     r5_show_cdp_neighbors_detail,
 )
 
-# initialize outer dictionary
+# initialize dictionary
 network_devices = {}
 
 # for each device data set

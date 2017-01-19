@@ -1,17 +1,16 @@
 '''
-Uptime parser
+Uptime Parser
 '''
 
 import re
 
-
-def find_uptime_field(a_pattern, uptime_str):
+def find_uptime_field(a_pattern, uptime_string):
     '''
-    If there is a match return the match group(1)
-    Else return 0
+    If there is a match, return match group 1
+    Else, return 0
     '''
 
-    a_check = re.search(a_pattern, uptime_str)
+    a_check = re.search(a_pattern, uptime_string)
     if a_check:
         return int(a_check.group(1))
     else:
@@ -20,30 +19,33 @@ def find_uptime_field(a_pattern, uptime_str):
 
 class Uptime(object):
     '''
-    Create an Uptime object for Cisco IOS uptime strings
+    Create an uptime object for Cisco IOS Strings
     '''
 
     def __init__(self, uptime_str):
 
-        # process the uptime string
+        # process the uptime Strings
         uptime_str = uptime_str.split("uptime is")[1]
 
-        # [years, weeks, days, hours, minutes]
+        # list to contain uptime elements [years, weeks, days, hours, minutes]
+        # Default to 0
         uptime_list = [0, 0, 0, 0, 0]
 
+        #
         pattern_list = [
-            r" ([0-9]+) year",
-            r" ([0-9]+) week",
-            r" ([0-9]+) day",
-            r" ([0-9]+) hour",
-            r" ([0-9]+) minute",
+        r" ([0-9]+) year",
+        r" ([0-9]+) week",
+        r" ([0-9+]) day",
+        r" ([0-9+]) hour",
+        r" ([0-9]+) minute",
         ]
 
+        # Process the uptime string for pattern list matches.
+        # Update the uptime list with matches.
         for i, a_pattern in enumerate(pattern_list):
             uptime_list[i] = find_uptime_field(a_pattern, uptime_str)
 
         (self.years, self.weeks, self.days, self.hours, self.minutes) = uptime_list
-
 
     def uptime_seconds(self):
         '''
@@ -54,31 +56,30 @@ class Uptime(object):
         HOUR_S = MINUTE_S * 60
         DAY_S = HOUR_S * 24
         WEEK_S = DAY_S * 7
-        YEAR_S = DAY_S * 365
+        YEAR_S = WEEK_S * 52
 
         return ((self.years * YEAR_S) + (self.weeks * WEEK_S) + (self.days * DAY_S) +
                 (self.hours * HOUR_S) + (self.minutes * MINUTE_S))
 
-
 def main():
     '''
-    Test various uptime strings
+    Test the uptime strings.
     '''
 
+    # Strings
     uptime_strings = [
-        'twb-sf-881 uptime is 6 weeks, 4 days, 2 hours, 25 minutes',
-        '3750RJ uptime is 1 hour, 29 minutes',
-        'CATS3560 uptime is 8 weeks, 4 days, 18 hours, 16 minutes',
-        'rtr1 uptime is 5 years, 18 weeks, 8 hours, 23 minutes',
+    'twb-sf-881 uptime is 6 weeks, 4 days, 2 hours, 25 minutes',
+    '3750RJ uptime is 1 hour, 29 minutes',
+    'CATS3560 uptime is 8 weeks, 4 days, 18 hours, 16 minutes',
+    'rtr1 uptime is 5 years, 18 weeks, 8 hours, 23 minutes'
     ]
-
 
     for uptime_str in uptime_strings:
 
         test_obj = Uptime(uptime_str)
 
         print
-        print "> " + uptime_str
+        print ">" + uptime_str
         print "%-20s: %s" % ('years', test_obj.years)
         print "%-20s: %s" % ('weeks', test_obj.weeks)
         print "%-20s: %s" % ('days', test_obj.days)
@@ -89,6 +90,5 @@ def main():
 
     print
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

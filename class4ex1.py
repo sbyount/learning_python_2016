@@ -1,36 +1,35 @@
 # Get an IP address from user and validate.
+
+# Continue the loop until this is False
 not_done = True
+
+# Get the IP address.  Continue looping until IP address is valid or CNTRL C.
 while not_done:
-
-    ip_addr = raw_input("\n\nPlease enter an IP address: ")
-
-    # Check for valid ip address--would be much nice to be a function :-)
-
-    # This checking code is based upon the code from class3, exercise#4
-    # https://github.com/ktbyers/pynet/blob/master/learnpy_ecourse/class3/ex4_ip_address_valid.py
+    ip_addr = raw_input("\nPlease enter an IP address to validate: ")
 
     valid_ip = True
 
-    # Make sure IP has four octets
+    # split the ip address into a list, separated by "."
     octets = ip_addr.split('.')
     if len(octets) != 4:
-        print "\nLooks like you don't have 4 valid octets - please try again."
+        # sys.exit("\nInvalid IP address: %s. 4 octets are required, delimited by '.'.\n " % ip_addr)
+        print "\nInvalid IP address: %s. 4 octets are required, delimited by '.'.\n " % ip_addr
         continue
 
-    # convert octet from string to int
+    # convert from string to int.
     for i, octet in enumerate(octets):
-
         try:
             octets[i] = int(octet)
         except ValueError:
-            # couldn't convert octet to an integer
+            # could not convert to int
+            print "\nInvalid IP address: %s. Only integers are allowed.\n" % ip_addr
             valid_ip = False
+            # sys.exit("\nInvalid IP address: %s. Only integers are allowed.\n" % ip_addr)
 
-    # Go to next iteration of while loop if I don't have 4 integers
+    # go to the next iteration of the loop if all 4 are not integers
     if not valid_ip:
-        print "\nYou entered an octet that wasn't an integer (or a blank", \
-              "octet) - that's not going to work."
-        continue
+        print "\nOne or more octets is not an integer or is blank", \
+            "Please try again."
 
     # map variables to elements of octets list
     first_octet, second_octet, third_octet, fourth_octet = octets
@@ -52,11 +51,12 @@ while not_done:
         if (octet < 0) or (octet > 255):
             valid_ip = False
 
-
+    # If none of the above match, the IP is good.
     if valid_ip:
         not_done = False
+    # Otherwise it is bad.  Print the error and start the loop again.
     else:
-        print "\nWell, you screwed-up something on that IP address - do it again please."
+        print "\nSomething is wrong, please try again."
 
-
-print "\n\nThe IP address is valid: %s\n" % ip_addr
+# If the loop exits, the IP is valid.  Print confirmation message.
+print "\nYour IP address %s is valid.\n" % ip_addr

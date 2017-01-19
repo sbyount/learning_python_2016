@@ -1,76 +1,100 @@
+'''
+Classes and objects
+'''
 class IPAddress(object):
-    '''
-    A class representing an IP address
-    '''
 
+    # initialize ip_addr object
     def __init__(self, ip_addr):
         self.ip_addr = ip_addr
 
-
+    # function to convert ipv4 to binary.
     def display_in_binary(self):
         '''
-        Display the IP address in dotted binary format padded to eight
-        digits:
-        11000000.10101000.00000001.00000001
+        display IP address in dotted decimal notation, padded to eight digits.
         '''
 
+        # split the string into a LIST at the decimal point.
         octets = self.ip_addr.split(".")
 
-        binary_ip = []
+        # create a blanklist to append later
+        ip_addr_bin = []
+
+        # For each element
         for octet in octets:
-            # convert octet to binary
-            octet_bin = bin(int(octet))
-            octet_bin = octet_bin.split('0b')[1]
 
-            # pad to 8 digits using rjust() method
-            octet_bin = octet_bin.rjust(8, '0')
-            binary_ip.append(octet_bin)
+            # convert the string to int and then into binary
+            # put the binary representation of the integer of that octet into var.
+            bin_octet = bin(int(octet))
 
-        return ".".join(binary_ip)
+            # strip off the 'ob' string tag
+            bin_octet = bin_octet[2:]
 
+            # prepend zeros to the value to make it total eight digits
+            while True:
+                if len(bin_octet) >= 8:
+                    break
+                bin_octet = '0' + bin_octet
 
+            # Add each new element to the new list
+            ip_addr_bin.append(bin_octet)
+
+        # join the binary number in binary format
+        ip_addr_bin = ".".join(ip_addr_bin)
+
+        return ip_addr_bin
+
+    #function to display ip address to hex
     def display_in_hex(self):
         '''
-        Display the IP address in dotted hex format padded to eight
-        digits:
-        c0.a8.01.01
+        display IP address in two digit hex notation
         '''
-
+        # split the string into a LIST at the decimal point.
         octets = self.ip_addr.split(".")
 
-        hex_ip = []
+        # create a blanklist to append later
+        ip_addr_hex = []
+
+        # For each element
         for octet in octets:
-            # convert octet to hex
-            octet_hex = hex(int(octet))
-            octet_hex = octet_hex.split('0x')[1]
 
-            # pad to 2 digits using rjust() method
-            octet_hex = octet_hex.rjust(2, '0')
-            hex_ip.append(octet_hex)
+            # convert the string to int and then into binary
+            # put the binary representation of the integer of that octet into var.
+            hex_octet = hex(int(octet))
 
-        return ".".join(hex_ip)
+            # strip off the 'ob' string tag
+            hex_octet = hex_octet[2:]
 
+            # prepend zeros to the value to make it total eight digits
+            while True:
+                if len(hex_octet) >= 2:
+                    break
+                hex_octet = '0' + hex_octet
+
+            # Add each new element to the new list
+            ip_addr_hex.append(hex_octet)
+
+        # join the binary number in binary format
+        ip_addr_hex = ".".join(ip_addr_hex)
+
+        return ip_addr_hex
 
     def is_valid(self):
         '''
-        Check if the IP address is valid
-        Return either True or False
+        Check to make sure the IP is valid.
+        Return True or False
         '''
 
-        # Make sure IP has four octets
+        # check to make sure there are four octets
         octets = self.ip_addr.split('.')
         if len(octets) != 4:
             return False
 
-        # convert octet from string to int
+        # check to make sure the values are integers
         for i, octet in enumerate(octets):
-
-            try:
-                octets[i] = int(octet)
-            except ValueError:
-                # couldn't convert octet to an integer
-                return False
-
+                try:
+                    octets[i] = int(octet)
+                except ValueError:
+                    return False
 
         # map variables to elements of octets list
         first_octet, second_octet, third_octet, fourth_octet = octets
@@ -92,22 +116,16 @@ class IPAddress(object):
             if (octet < 0) or (octet > 255):
                 return False
 
-
-        # Passed all of the checks
+        # Passed all the checks, return True
         return True
 
 
-
-
-if __name__ == "__main__":
-
-    # Some simple testing
-    TEST_IP = ['192.168.1.1', '0.255.1.1']
+if __name__ == '__main__':
+    TEST_IP = ['192.168.1.1', '0.255.1.1', '169.254.1.1', '10.10.10.10']
 
     for ip in TEST_IP:
-        print "\nTesting IP: %s" % ip
+        print "\nTesting %s" % ip
         test_ip = IPAddress(ip)
         print "IP in binary: %s" % test_ip.display_in_binary()
         print "IP in hex: %s" % test_ip.display_in_hex()
         print "IP is valid: %s" % test_ip.is_valid()
-        print

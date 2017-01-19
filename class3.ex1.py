@@ -1,5 +1,4 @@
 # This is a decimal to binary converter from Learning Python Week 3.
-# Enter filename plus IP address at command line.
 import sys
 
 # if there are no args or extra args, exit.
@@ -9,7 +8,7 @@ if len(sys.argv) != 2:
 
 # pop off the second element into the var
 ip_addr = sys.argv.pop()
-# split the string into a LIST at the decimal points.
+# split the string into a LIST at the decimal point.
 octets = ip_addr.split(".")
 
 # create a blanklist to append later
